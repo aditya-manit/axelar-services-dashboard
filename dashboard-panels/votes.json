@@ -1,0 +1,226 @@
+{
+  "id": 103,
+  "gridPos": {
+    "h": 24,
+    "w": 8,
+    "x": 4,
+    "y": 67
+  },
+  "type": "table",
+  "title": "Axelar Votes",
+  "transformations": [
+    {
+      "id": "organize",
+      "options": {
+        "excludeByName": {
+          "sender_chain": false
+        },
+        "indexByName": {
+          "late": 3,
+          "sender_chain": 0,
+          "timestamp": 1,
+          "vote": 2
+        },
+        "renameByName": {
+          "created_at.ms": "",
+          "sender_chain": ""
+        }
+      }
+    }
+  ],
+  "datasource": {
+    "type": "yesoreyeram-infinity-datasource",
+    "uid": "QPdAZ0v7k"
+  },
+  "pluginVersion": "9.2.0",
+  "fieldConfig": {
+    "defaults": {
+      "custom": {
+        "align": "auto",
+        "displayMode": "auto",
+        "inspect": false
+      },
+      "mappings": [],
+      "thresholds": {
+        "mode": "absolute",
+        "steps": [
+          {
+            "color": "#262a2ea1",
+            "value": null
+          }
+        ]
+      },
+      "color": {
+        "mode": "thresholds"
+      }
+    },
+    "overrides": [
+      {
+        "matcher": {
+          "id": "byName",
+          "options": "sender_chain"
+        },
+        "properties": [
+          {
+            "id": "custom.displayMode",
+            "value": "color-background"
+          },
+          {
+            "id": "custom.width",
+            "value": 143
+          }
+        ]
+      },
+      {
+        "matcher": {
+          "id": "byName",
+          "options": "timestamp"
+        },
+        "properties": [
+          {
+            "id": "custom.displayMode",
+            "value": "color-background-solid"
+          },
+          {
+            "id": "custom.width",
+            "value": 218
+          }
+        ]
+      },
+      {
+        "matcher": {
+          "id": "byName",
+          "options": "vote"
+        },
+        "properties": [
+          {
+            "id": "mappings",
+            "value": [
+              {
+                "options": {
+                  "false": {
+                    "color": "red",
+                    "index": 1,
+                    "text": "VOTED_NO"
+                  },
+                  "true": {
+                    "color": "green",
+                    "index": 0,
+                    "text": "VOTED_YES"
+                  }
+                },
+                "type": "value"
+              }
+            ]
+          },
+          {
+            "id": "custom.displayMode",
+            "value": "color-background-solid"
+          },
+          {
+            "id": "custom.width",
+            "value": 185
+          }
+        ]
+      },
+      {
+        "matcher": {
+          "id": "byName",
+          "options": "late"
+        },
+        "properties": [
+          {
+            "id": "mappings",
+            "value": [
+              {
+                "options": {
+                  "false": {
+                    "color": "green",
+                    "index": 1,
+                    "text": "ON_TIME"
+                  },
+                  "true": {
+                    "color": "red",
+                    "index": 0,
+                    "text": "LATE"
+                  }
+                },
+                "type": "value"
+              }
+            ]
+          },
+          {
+            "id": "custom.displayMode",
+            "value": "color-background-solid"
+          },
+          {
+            "id": "custom.width",
+            "value": 172
+          }
+        ]
+      }
+    ]
+  },
+  "options": {
+    "showHeader": true,
+    "footer": {
+      "show": false,
+      "reducer": [
+        "sum"
+      ],
+      "fields": ""
+    },
+    "sortBy": []
+  },
+  "targets": [
+    {
+      "columns": [
+        {
+          "selector": "sender_chain",
+          "text": "",
+          "type": "string"
+        },
+        {
+          "selector": "vote",
+          "text": "",
+          "type": "string"
+        },
+        {
+          "selector": "created_at.ms",
+          "text": "timestamp",
+          "type": "timestamp_epoch"
+        },
+        {
+          "selector": "late",
+          "text": "",
+          "type": "string"
+        }
+      ],
+      "csv_options": {
+        "columns": "",
+        "comment": "",
+        "delimiter": ",",
+        "relax_column_count": false,
+        "skip_empty_lines": false,
+        "skip_lines_with_error": false
+      },
+      "data": "",
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "QPdAZ0v7k"
+      },
+      "filters": [],
+      "format": "table",
+      "global_query_id": "",
+      "refId": "A",
+      "root_selector": "",
+      "source": "url",
+      "type": "json",
+      "url": "https://api.axelarscan.io/",
+      "url_options": {
+        "data": "{\n    \"size\": 24,\n    \"query\": {\n        \"bool\": {\n            \"must\": [\n                {\n                    \"match\": {\n                        \"voter\": \"axelar17x2hs7tta7nkmh788f2d9q60nt8mnk370t5ncs\"\n                    }\n                }\n            ]\n        }\n    },\n    \"sort\": [\n        {\n            \"created_at.ms\": \"desc\"\n        }\n    ],\n    \"collection\": \"evm_votes\",\n    \"method\": \"search\",\n    \"path\": \"/evm_votes/_search\",\n    \"module\": \"index\"\n}",
+        "method": "POST"
+      }
+    }
+  ]
+}

@@ -1,0 +1,149 @@
+{
+  "id": 110,
+  "gridPos": {
+    "h": 5,
+    "w": 3,
+    "x": 0,
+    "y": 61
+  },
+  "type": "stat",
+  "title": "Fantom Chain Maintainer",
+  "transformations": [
+    {
+      "disabled": true,
+      "id": "extractFields",
+      "options": {
+        "format": "json",
+        "replace": true,
+        "source": "maintainers"
+      }
+    },
+    {
+      "id": "filterByValue",
+      "options": {
+        "filters": [
+          {
+            "config": {
+              "id": "regex",
+              "options": {
+                "value": "axelarvaloper1s0lankh33kprer2l22nank5rvsuh9ksa6utflp"
+              }
+            },
+            "fieldName": "maintainers"
+          }
+        ],
+        "match": "any",
+        "type": "include"
+      }
+    },
+    {
+      "id": "calculateField",
+      "options": {
+        "mode": "reduceRow",
+        "reduce": {
+          "reducer": "sum"
+        },
+        "replaceFields": true
+      }
+    }
+  ],
+  "datasource": {
+    "type": "yesoreyeram-infinity-datasource",
+    "uid": "QPdAZ0v7k"
+  },
+  "pluginVersion": "9.2.0",
+  "fieldConfig": {
+    "defaults": {
+      "mappings": [
+        {
+          "options": {
+            "0": {
+              "color": "green",
+              "index": 0,
+              "text": "Fantom Registered"
+            }
+          },
+          "type": "value"
+        },
+        {
+          "options": {
+            "match": "null+nan",
+            "result": {
+              "color": "red",
+              "index": 1,
+              "text": "Fantom NOT Registered"
+            }
+          },
+          "type": "special"
+        }
+      ],
+      "thresholds": {
+        "mode": "absolute",
+        "steps": [
+          {
+            "color": "red",
+            "value": null
+          },
+          {
+            "color": "green",
+            "value": 0
+          }
+        ]
+      },
+      "color": {
+        "mode": "thresholds"
+      }
+    },
+    "overrides": []
+  },
+  "options": {
+    "reduceOptions": {
+      "values": false,
+      "calcs": [
+        "lastNotNull"
+      ],
+      "fields": ""
+    },
+    "orientation": "auto",
+    "textMode": "auto",
+    "colorMode": "background",
+    "graphMode": "area",
+    "justifyMode": "auto"
+  },
+  "targets": [
+    {
+      "columns": [
+        {
+          "selector": "maintainers",
+          "text": "",
+          "type": "string"
+        }
+      ],
+      "csv_options": {
+        "columns": "",
+        "comment": "",
+        "delimiter": ",",
+        "relax_column_count": false,
+        "skip_empty_lines": false,
+        "skip_lines_with_error": false
+      },
+      "data": "",
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "QPdAZ0v7k"
+      },
+      "filters": [],
+      "format": "table",
+      "global_query_id": "",
+      "refId": "A",
+      "root_selector": "",
+      "source": "url",
+      "type": "json",
+      "url": "https://api.axelarscan.io/chain-maintainers",
+      "url_options": {
+        "data": "{\"chain\":\"fantom\"}",
+        "method": "POST"
+      }
+    }
+  ]
+}
