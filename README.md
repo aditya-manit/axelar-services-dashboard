@@ -4,9 +4,11 @@ This repo provides grafana dashboards to monitor health Axelar Services
 We figured that Axelar is not just any other cosmos blockchain where you just have to monitor your node for uptime and miss block counter. 
 #### Axelar has many other services that requires monitoring too, so here are some cool grafana dashboard that will help you monitor Axelar Services Better
 
-All of these dashboard are well color coded
-Green -> All Good
-Red -> Bad
+All of these dashboard are well color coded:
+
+Green 🟩: All Good
+
+Red 🟥: Bad
 
 ## External Chain Registration
 
